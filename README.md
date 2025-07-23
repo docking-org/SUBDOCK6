@@ -17,7 +17,7 @@ This repository is a fork of [SUBDOCK](https://github.com/docking-org/SUBDOCK) c
     ```
 
 2. **Configure your environment:**  
-    Ensure DOCK6 is installed and accessible in your `$PATH`.
+    Ensure DOCK6 is installed.
 
 3. **Run a docking job:**  
     See `run_docking_example.sh`.
