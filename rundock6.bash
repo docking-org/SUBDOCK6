@@ -231,8 +231,8 @@ log "Current working directory: $(pwd)"
 log "Files in current directory: $(ls -la)"
 log "ligands.db2 exists in current dir: $(test -f ligands.db2 && echo 'YES' || echo 'NO')"
 log "ligands.db2 readable in current dir: $(test -r ligands.db2 && echo 'YES' || echo 'NO')"
-set -x
-exec > $OUTPUT/full.log 2>&1
+# set -x
+# exec > $OUTPUT/full.log 2>&1
 env time -v -o $OUTPUT/perfstats $DOCKEXEC -i dock.in -o dock.out  &
 dockppid=$!
 # find actual DOCK PID by grepping for our executable in ps output, as well as the returned PID (which should be a parent to the actual DOCK process)
@@ -266,7 +266,7 @@ sleeptime=2
 # 	echo "dockexec=$DOCKEXEC" >> OUTDOCK
 # fi
 wait $dockppid
-cat dock.out >> $OUTPUT/dock.out
+# cat dock.out >> $OUTPUT/dock.out
 sleep 5 # bash script seems to jump the gun and start cleanup prematurely when DOCK is interrupted. This is stupid but effective at preventing this
 
 log "finished!"
