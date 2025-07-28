@@ -93,8 +93,11 @@ mkdir -p $OUTPUT
 # we need to create this symbolic link in a directory relative to where DOCK will run
 # the reason: fortran won't accept paths longer than 80 chars
 # thus, all paths to grid files etc should be formatted like ../dockfiles/* to sidestep this path limit
-ln -s $DOCKFILES $JOB_DIR/dock6files
-ln -s $JOB_DIR/dock6files/dock.in $JOB_DIR/dock.in
+# ln -s $DOCKFILES $JOB_DIR/dock6files
+# Copying to prevent modification of the original dock6files
+cp -rv $DOCKFILES $JOB_DIR/dock6files
+# ln -s $JOB_DIR/dock6files/dock.in $JOB_DIR/dock.in
+cp -v $JOB_DIR/dock6files/dock.in $JOB_DIR/dock.in
 
 # import restart marker, if it exists
 if [ -f $OUTPUT/restart ]; then
@@ -225,7 +228,7 @@ log "ligands.db2 created, size=$(stat -c%s $JOB_DIR/ligands.db2), path=$JOB_DIR/
 log "split_database_index created, size=$(stat -c%s split_database_index), path=$(pwd)/split_database_index"
 
 # Create symbolic link to ligands.db2 in current directory for DOCK to find
-ln -sf $JOB_DIR/ligands.db2 ligands.db2
+# ln -sf $JOB_DIR/ligands.db2 ligands.db2
 
 log "Current working directory: $(pwd)"
 log "Files in current directory: $(ls -la)"
